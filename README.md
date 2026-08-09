@@ -18,19 +18,14 @@ npm run build
 npm start
 ```
 
-## Consultation request workflow configuration
+## Flodesk form workflow
 
-Each valid form submission is saved in the configured Google spreadsheet, sends an owner notification email, sends the customer a confirmation email, and then redirects to `/thank-you`.
+The landing page uses the native Flodesk HTML embed stored at `public/flodesk-embed.html`. Flodesk remains responsible for lead capture and email automation.
 
-1. Copy `.env.example` to `.env.local` and add the Google service-account, spreadsheet, and Gmail app-password values.
-2. Share the Google spreadsheet with the configured service-account email as an **Editor**.
-3. Enable the Google Sheets API in the service account's Google Cloud project.
-4. Keep `.env.local` private and add the same variables to Vercel before deployment.
-
-The application creates and formats a dedicated `Consultation Requests` sheet tab automatically. Existing spreadsheet tabs and data are preserved.
+The embed's native success stage is observed in the browser. After Flodesk confirms a successful submission, the page waits briefly and redirects to `/thanks`. There is no custom form backend or iframe submission workaround.
 
 ## Deploy to Vercel
 
 Import this repository in Vercel. The framework will be detected as Next.js automatically; no custom build settings are required. Connect `digital.nirajtharu.com.np` in the project domain settings after deployment.
 
-The form redirects to `/thank-you` only after the spreadsheet row and both emails are successfully processed.
+The `/thanks` route displays the same confirmation experience as `/thank-you`.

@@ -24,4 +24,5 @@ yarn-error.log*
 .local-server*.log
 .dev-server*.log
 .orders-server*.log
+.flodesk-server*.log
 /favicon.png
