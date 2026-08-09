@@ -18,20 +18,19 @@ npm run build
 npm start
 ```
 
-## Email delivery setup
+## Consultation request workflow configuration
 
-Form submissions are sent to `nirajtharu083@gmail.com` through Resend.
+Each valid form submission is saved in the configured Google spreadsheet, sends an owner notification email, sends the customer a confirmation email, and then redirects to `/thank-you`.
 
-1. Create a free account at [Resend](https://resend.com) using `nirajtharu083@gmail.com`.
-2. Create an API key in the Resend dashboard.
-3. Copy `.env.example` to `.env.local` and replace `re_your_api_key` with the key.
-4. For production, verify `digital.nirajtharu.com.np` in Resend and keep the configured `RESEND_FROM_EMAIL` value.
-5. Add both environment variables to the Vercel project settings before deploying.
+1. Copy `.env.example` to `.env.local` and add the Google service-account, spreadsheet, and Gmail app-password values.
+2. Share the Google spreadsheet with the configured service-account email as an **Editor**.
+3. Enable the Google Sheets API in the service account's Google Cloud project.
+4. Keep `.env.local` private and add the same variables to Vercel before deployment.
 
-Until the API key is configured, the form displays a delivery error and does not show a false success page.
+The application creates and formats a dedicated `Consultation Requests` sheet tab automatically. Existing spreadsheet tabs and data are preserved.
 
 ## Deploy to Vercel
 
 Import this repository in Vercel. The framework will be detected as Next.js automatically; no custom build settings are required. Connect `digital.nirajtharu.com.np` in the project domain settings after deployment.
 
-After Resend confirms delivery, the form redirects to `/thank-you`.
+The form redirects to `/thank-you` only after the spreadsheet row and both emails are successfully processed.

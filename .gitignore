@@ -22,3 +22,6 @@ yarn-error.log*
 .vercel
 *.tsbuildinfo
 .local-server*.log
+.dev-server*.log
+.orders-server*.log
+/favicon.png

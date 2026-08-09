@@ -45,23 +45,24 @@ export default function CTAForm() {
     setSubmitting(true);
 
     try {
-      const response = await fetch("/api/consultation", {
+      const response = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...values, companyWebsite }),
       });
-      const result = (await response.json()) as { error?: string };
+      const result = (await response.json()) as { error?: string; orderId?: string };
 
       if (!response.ok) {
-        throw new Error(result.error || "We couldn't send your request. Please try again.");
+        throw new Error(result.error || "We couldn't complete your request. Please try again.");
       }
 
+      if (result.orderId) sessionStorage.setItem("digitalNirajOrderId", result.orderId);
       router.push("/thank-you");
     } catch (error) {
       setSubmitError(
         error instanceof Error
           ? error.message
-          : "We couldn't send your request. Please try again.",
+          : "We couldn't complete your request. Please try again.",
       );
       setSubmitting(false);
     }
@@ -86,7 +87,7 @@ export default function CTAForm() {
             <div className="flex gap-3.5"><span className="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-blue-500/20 text-blue-400"><Check width="16" /></span><div><h3 className="font-bold">Customized Strategy for Your Business</h3><p className="mt-1 leading-7 text-slate-400">Receive a personalized AI marketing plan based on your current situation and business objectives.</p></div></div>
           </div>
         </div>
-        <form onSubmit={submit} noValidate className="rounded-[1.5rem] border border-white/10 bg-white p-5 shadow-[0_24px_70px_rgba(0,0,0,.3)] sm:p-8 lg:p-10">
+        <form onSubmit={submit} noValidate className="relative rounded-[1.5rem] border border-white/10 bg-white p-5 shadow-[0_24px_70px_rgba(0,0,0,.3)] sm:p-8 lg:p-10">
           <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
             <label htmlFor="companyWebsite">Company website</label>
             <input id="companyWebsite" name="companyWebsite" type="text" tabIndex={-1} autoComplete="off" value={companyWebsite} onChange={(event) => setCompanyWebsite(event.target.value)} />
@@ -108,7 +109,7 @@ export default function CTAForm() {
             </p>
           )}
           <button type="submit" disabled={submitting} className="primary-button mt-6 w-full">
-            {submitting ? "Booking your consultation…" : "Book Free Consultation"}
+            {submitting ? "Saving your request…" : "Book Free Consultation"}
             {!submitting && <ArrowRight />}
           </button>
           <p className="mt-4 flex items-center justify-center gap-2 text-center text-sm text-slate-500"><Lock /> We respect your privacy. No spam.</p>
