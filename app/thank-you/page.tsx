@@ -37,11 +37,15 @@ export default function ThankYouPage() {
               <h2 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">Please Watch This Short Video</h2>
               <p className="mt-3 leading-7 text-slate-500">This short video will help you get the most value from our consultation.</p>
             </div>
-            <div className="mx-6 grid aspect-video place-items-center rounded-2xl bg-slate-950 text-center text-white sm:mx-9">
-              <div>
-                <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-blue-600 shadow-[0_10px_30px_rgba(37,99,235,.4)]" aria-hidden="true"><span className="ml-1 block h-0 w-0 border-y-[9px] border-l-[14px] border-y-transparent border-l-white" /></span>
-                <p className="mt-4 text-sm font-semibold text-slate-300">Video coming soon</p>
-              </div>
+            <div className="mx-6 overflow-hidden rounded-2xl bg-slate-950 shadow-[0_18px_45px_rgba(15,23,42,.18)] sm:mx-9">
+              <iframe
+                className="aspect-video w-full"
+                src="https://www.youtube.com/embed/KDlCFhh1tgY"
+                title="How to prepare for your free AI Marketing Strategy Call"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
             <div className="grid gap-3 p-6 sm:grid-cols-2 sm:p-9">
               {videoPoints.map((point) => <p key={point} className="flex items-start gap-2.5 text-sm leading-6 text-slate-600"><Check className="mt-0.5 shrink-0 text-blue-600" width="18" />{point}</p>)}
@@ -53,7 +57,7 @@ export default function ThankYouPage() {
             <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl">Want a Faster Response?</h2>
             <p className="mx-auto mt-3 max-w-[620px] leading-7 text-blue-100">If you have any questions before the consultation or would like to share additional information about your business, send me a message on WhatsApp.</p>
             <p className="mx-auto mt-2 max-w-[620px] leading-7 text-blue-100">This also helps me better understand your business before our call.</p>
-            <a href="https://wa.me/9779802633026" target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex min-h-14 items-center justify-center gap-2 rounded-xl bg-white px-6 font-bold text-blue-700 no-underline shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white/50">Message on WhatsApp <ArrowRight /></a>
+            <a href="https://t.ly/PicEi" target="_blank" rel="noopener noreferrer" aria-label="Chat with Digital Niraj on WhatsApp" className="mt-7 inline-flex min-h-14 items-center justify-center gap-2 rounded-xl bg-white px-6 font-bold text-blue-700 no-underline shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-white/50"><Message width="20" height="20" /> Chat on WhatsApp <ArrowRight /></a>
           </div>
 
           <div className="mx-auto mt-12 max-w-[690px] text-center">
